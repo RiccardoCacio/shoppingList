@@ -5,62 +5,59 @@ window.onload = function () {
     let shoppingListBox = document.getElementById('shoppingListBox');
     let clearButton = document.getElementById('clearButton');
     let errorP = document.getElementById('errorP');
-    
-    let storage= localStorage.shoppingArr;
 
-  //array
-   let shoppingArr=[]
- 
+    let storage = localStorage.shoppingArr;
 
-
-   if(storage !=  undefined ){
-
-        
-        shoppingArr =  JSON.parse(localStorage.getItem('shoppingArr'))
-        
-
-
-            for (i=0; i<shoppingArr.length; i++){
-                let oldShopping = document.createElement('li')
-                oldShopping.setAttribute('class', 'oldShopping')
-                oldShopping.textContent = shoppingArr[i].name;
-                shoppingListBox.appendChild(oldShopping)
-
-                oldShopping.addEventListener('click', () => {
-                        // newShopping.style.textDecoration = 'line-through'
-                        if(shoppingArr.bValue===true){
-                            shoppingArr.bValue=false
-                           }else{
-                            shoppingArr.bValue=true
-                           }
-            
-                           if(shoppingArr.bValue==false){
-                            oldShopping.style.textDecoration='line-through'
-                           } else{
-                            oldShopping.style.textDecoration='none'
-                           }
-            
-                        
-
-    
-                })
-                console.log(shoppingArr)
-
-            
-      
-    }}
+    //array
+    let shoppingArr = []
 
 
 
-//button for add 
+    if (storage != undefined) {
+
+
+        shoppingArr = JSON.parse(localStorage.getItem('shoppingArr'))
+
+        for (i = 0; i < shoppingArr.length; i++) {
+            let newShopping = document.createElement('li')
+            newShopping.setAttribute('class', 'newShoppingList')
+            newShopping.dataset.index = i;
+            newShopping.textContent = shoppingArr[i].name;
+            shoppingListBox.appendChild(newShopping)
+
+            newShopping.style.textDecoration = shoppingArr[i].bValue ? "none" : "line-through"
+
+
+            newShopping.addEventListener('click', (e) => {
+
+                const element = e.currentTarget;
+                const i = Number(element.dataset.index);
+
+                if (shoppingArr[i].bValue) {
+                    shoppingArr[i].bValue = false;
+                }
+                else {
+                    shoppingArr[i].bValue = true;
+                }
+
+                console.log(shoppingArr[i].bValue)
+                newShopping.style.textDecoration = shoppingArr[i].bValue ? "none" : "line-through"
+                localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
+            })
+        }
+    }
+
+
+
+    //button for add 
     addButton.addEventListener('click', () => {
 
         let obj = {
             'name': input.value,
             'bValue': true
         }
-        
-         // error empty input
+
+        // error empty input
         if (input.value === '') {
             //write  errorP
             errorP.style.display = 'block'
@@ -69,7 +66,7 @@ window.onload = function () {
             shoppingArr.push(obj)
 
             // array lenght 
-           // let arrLenght = shoppingArr.length
+            // let arrLenght = shoppingArr.length
 
             //remove errorP
             errorP.style.display = 'none'
@@ -80,45 +77,43 @@ window.onload = function () {
             newShopping.setAttribute('class', 'newShoppingList')
             newShopping.textContent = input.value;
             shoppingListBox.appendChild(newShopping)
-
             localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
-
             localStorage.setItem("obj", JSON.stringify(obj));
 
 
-           
+
 
             newShopping.addEventListener('click', () => {
 
-              
 
-               // newShopping.style.textDecoration = 'line-through'
-               if(obj.bValue===true){
-                obj.bValue=false
-               }else{
-                obj.bValue=true
-               }
 
-               if(obj.bValue===false){
-                newShopping.style.textDecoration='line-through'
-               } else{
-                newShopping.style.textDecoration='none'
-               }
+                // newShopping.style.textDecoration = 'line-through'
+                if (obj.bValue === true) {
+                    obj.bValue = false
+                } else {
+                    obj.bValue = true
+                }
 
-               localStorage.setItem("obj", JSON.stringify(obj));
-               localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
-              
+                if (obj.bValue === false) {
+                    newShopping.style.textDecoration = 'line-through'
+                } else {
+                    newShopping.style.textDecoration = 'none'
+                }
+
+                localStorage.setItem("obj", JSON.stringify(obj));
+                localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
+
 
 
             })
             input.value = '';
-        
-        
-        
 
 
 
-           
+
+
+
+
         }
 
 
@@ -126,7 +121,7 @@ window.onload = function () {
     })
     //button for clear!
     clearButton.addEventListener('click', () => {
-      
+
 
         //remove shoppinglist
         shoppingListBox.innerHTML = ''
@@ -134,9 +129,9 @@ window.onload = function () {
         errorP.style.display = 'none'
         //reset shoppingArr
         shoppingArr.length = 0;
-  //reset localStorage
+        //reset localStorage
         localStorage.clear('shoppingArr')
-    
+
     })
-    
-    }
+
+}
