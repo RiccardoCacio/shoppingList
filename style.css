@@ -4,7 +4,7 @@ body {
     justify-content: center;
     text-align: center;
     background-color: rgb(219, 245, 250);
-
+    font-family: 'Oxygen', sans-serif;
 }
 
 #title {
@@ -58,8 +58,7 @@ body {
 
     font-size: 20px;
     font-weight: 500;
-    height: 40px;
-    width: 60px;
+    padding: 8px 20px 8px 20px;
     margin-left: 20px;
     background-color: rgb(166, 192, 240);
     border: solid black 1px;
@@ -88,8 +87,8 @@ body {
     align-self: center;
     font-size: 20px;
     font-weight: 500;
-    height: 40px;
-    width: 80px;
+   padding: 8px 20px 8px 20px;
+    
     background-color: rgb(249, 97, 97);
     border: solid black 1px;
     border-radius: 10px;

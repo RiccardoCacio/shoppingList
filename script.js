@@ -73,16 +73,25 @@ window.onload = function () {
 
 
 
+            //create element list
             let newShopping = document.createElement('li')
             newShopping.setAttribute('class', 'newShoppingList')
             newShopping.textContent = input.value;
+
+
+            //create delete button
+            /*let deleteButton = document.createElement('button');
+            deleteButton.setAttribute('class', 'deleteButton');
+            deleteButton.textContent='Delete';*/
+
+
             shoppingListBox.appendChild(newShopping)
             localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
             localStorage.setItem("obj", JSON.stringify(obj));
 
 
 
-
+            //click to line-through
             newShopping.addEventListener('click', () => {
 
 
@@ -106,6 +115,7 @@ window.onload = function () {
 
 
             })
+            
             input.value = '';
 
 
