@@ -5,7 +5,6 @@ window.onload = function () {
     let shoppingListBox = document.getElementById('shoppingListBox');
     let clearButton = document.getElementById('clearButton');
     let errorP = document.getElementById('errorP');
-
     let storage = localStorage.shoppingArr;
 
     //array
@@ -25,6 +24,35 @@ window.onload = function () {
             newShopping.textContent = shoppingArr[i].name;
             shoppingListBox.appendChild(newShopping)
 
+            //create delete button
+            let deleteButton = document.createElement('img');
+            deleteButton.setAttribute('class', 'deleteButton');
+            deleteButton.src = 'trash.svg'
+            newShopping.appendChild(deleteButton);
+
+            deleteButton.addEventListener('click', (e) => {
+                let element = e.currentTarget;
+                let x = Number(element.dataset.index);
+
+
+                shoppingArr.splice(x, 1)
+                newShopping.remove();
+
+                let list = document.querySelectorAll('.newShoppingList');
+
+                list.forEach(function (listItem, i) {
+                    listItem.dataset.index = i;
+
+                    let listItemDelete = listItem.querySelector(".deleteButton");
+                    listItemDelete.dataset.index = i;
+
+
+                });
+                localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
+            })
+
+
+
             newShopping.style.textDecoration = shoppingArr[i].bValue ? "none" : "line-through"
 
 
@@ -33,6 +61,7 @@ window.onload = function () {
                 const element = e.currentTarget;
                 const i = Number(element.dataset.index);
 
+
                 if (shoppingArr[i].bValue) {
                     shoppingArr[i].bValue = false;
                 }
@@ -40,7 +69,7 @@ window.onload = function () {
                     shoppingArr[i].bValue = true;
                 }
 
-                console.log(shoppingArr[i].bValue)
+                //console.log(shoppingArr[i].bValue)
                 newShopping.style.textDecoration = shoppingArr[i].bValue ? "none" : "line-through"
                 localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
             })
@@ -78,22 +107,42 @@ window.onload = function () {
             newShopping.setAttribute('class', 'newShoppingList')
             newShopping.textContent = input.value;
 
-
-            //create delete button
-            /*let deleteButton = document.createElement('button');
-            deleteButton.setAttribute('class', 'deleteButton');
-            deleteButton.textContent='Delete';*/
-
-
             shoppingListBox.appendChild(newShopping)
             localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
             localStorage.setItem("obj", JSON.stringify(obj));
 
+            //create delete button
+            let deleteButton = document.createElement('img');
+            deleteButton.setAttribute('class', 'deleteButton');
+            deleteButton.src = 'trash.svg'
+            newShopping.appendChild(deleteButton);
 
+            for (i = 0; i < shoppingArr.length; i++) {
+                deleteButton.dataset.index = i;
+            }
+
+            deleteButton.addEventListener('click', (e) => {
+                let element = e.currentTarget;
+                let x = Number(element.dataset.index);
+
+
+                shoppingArr.splice(x, 1)
+                newShopping.remove();
+
+                let list = document.querySelectorAll('.newShoppingList');
+
+                list.forEach(function (listItem, i) {
+                    listItem.dataset.index = i;
+
+                    let listItemDelete = listItem.querySelector(".deleteButton");
+                    listItemDelete.dataset.index = i;
+                    localStorage.setItem("shoppingArr", JSON.stringify(shoppingArr));
+
+                });
+            })
 
             //click to line-through
             newShopping.addEventListener('click', () => {
-
 
 
                 // newShopping.style.textDecoration = 'line-through'
@@ -115,7 +164,7 @@ window.onload = function () {
 
 
             })
-            
+
             input.value = '';
 
 
