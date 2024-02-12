@@ -8,10 +8,13 @@ body {
     touch-action: manipulation;
 }
 
+
+
 #title {
     font-size: 50px;
     font-weight: bolder;
     color: rgb(21, 127, 248);
+
 }
 
 #shoppingListBoxText {
@@ -21,13 +24,57 @@ body {
 
 @media only screen and (max-width: 960px) {
     #toDoBox {
-        display: flex;
+        /* display: flex; */
         text-align: center;
-        align-items: center;
         justify-content: center;
         flex-direction: column;
     }
 }
+
+
+
+#successToastr {
+    border-radius: 5px;
+    background-color: rgb(89, 222, 89, 0.8);
+    width: 40%;
+    display: none;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 960px) {
+    #successToastr {
+        width: 70%;
+    }
+}
+
+#clearToastr {
+    border-radius: 5px;
+    background-color: rgba(236, 64, 45, 0.8);
+    width: 40%;
+    display: none;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 960px) {
+    #clearToastr {
+        width: 70%;
+    }
+}
+
+#deleteToastr {
+    border-radius: 5px;
+    background-color: rgba(251, 154, 62, 0.8);
+    width: 40%;
+    display: none;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 960px) {
+    #deleteToastr {
+        width: 70%;
+    }
+}
+
 
 #shoppingListBoxText2 {
     font-size: 35px;
@@ -54,9 +101,11 @@ body {
 
 }
 
+
+
 #addButton {
     color: black;
-
+    margin-right: 15px;
     font-size: 20px;
     font-weight: 500;
     padding: 8px 20px 8px 20px;
@@ -105,7 +154,9 @@ body {
 }
 
 
-
+#shoppingListBox {
+    justify-content: left;
+}
 
 ul {
     font-size: 27px;

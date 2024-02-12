@@ -6,6 +6,10 @@ window.onload = function () {
     let clearButton = document.getElementById('clearButton');
     let errorP = document.getElementById('errorP');
     let storage = localStorage.shoppingArr;
+    let successToastr = document.getElementById('successToastr');
+    let clearToastr = document.getElementById('clearToastr');
+    let deleteToastr = document.getElementById('deleteToastr');
+
 
     //array
     let shoppingArr = []
@@ -34,6 +38,14 @@ window.onload = function () {
                 let element = e.currentTarget;
                 let x = Number(element.dataset.index);
 
+                //toastr delete
+                deleteToastr.style.display = 'block'
+
+                //delete toastr
+                setTimeout(() => {
+                    deleteToastr.style.display = 'none'
+
+                }, "1500");
 
                 shoppingArr.splice(x, 1)
                 newShopping.remove();
@@ -93,13 +105,16 @@ window.onload = function () {
         } else {
             //add the object to the shoppingArr
             shoppingArr.push(obj)
-
-            // array lenght 
-            // let arrLenght = shoppingArr.length
-
-            //remove errorP
             errorP.style.display = 'none'
 
+            //toastr add
+            successToastr.style.display = 'block'
+
+            //remove toastr
+            setTimeout(() => {
+                successToastr.style.display = 'none'
+
+            }, "1500");
 
 
             //create element list
@@ -125,6 +140,14 @@ window.onload = function () {
                 let element = e.currentTarget;
                 let x = Number(element.dataset.index);
 
+                //toastr delete
+                deleteToastr.style.display = 'block'
+
+                //delete toastr
+                setTimeout(() => {
+                    deleteToastr.style.display = 'none'
+
+                }, "1500");
 
                 shoppingArr.splice(x, 1)
                 newShopping.remove();
@@ -166,13 +189,6 @@ window.onload = function () {
             })
 
             input.value = '';
-
-
-
-
-
-
-
         }
 
 
@@ -180,7 +196,16 @@ window.onload = function () {
     })
     //button for clear!
     clearButton.addEventListener('click', () => {
+        //toastr
+        if (shoppingArr.length !== 0) {
+            clearToastr.style.display = 'block';
+        }
+        //remove toastr
+        setTimeout(() => {
 
+            clearToastr.style.display = 'none'
+
+        }, "1500");
 
         //remove shoppinglist
         shoppingListBox.innerHTML = ''
@@ -192,5 +217,7 @@ window.onload = function () {
         localStorage.clear('shoppingArr')
 
     })
+
+
 
 }
