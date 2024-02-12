@@ -1,5 +1,5 @@
 
-<h1> Shopping List App <h1/>
+<h1> Shopping List App </h1>
 
 This is a simple shopping list application built using JavaScript, HTML, and CSS. It allows users to create a shopping list, store items in the local storage, mark items as done, and delete items.
 
